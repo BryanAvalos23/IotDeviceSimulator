@@ -22,7 +22,7 @@ client.configureDrainingFrequency(2)
 client.configureConnectDisconnectTimeout(10)
 client.configureMQTTOperationTimeout(30)
 
-print("Conectando al cliente MQTT...")
+print("\n[+] Conectando al cliente MQTT...\n")
 client.connect()
 
 def simulated_temperature():
@@ -48,6 +48,8 @@ def simulated_temperature():
       "CO2": co2
     }
 
+    print("[+] Nuevo mensaje publicado:")
+    print("=========================================")
     print(f"Temperatura actual: {temperature} C")
     print(f"Humedad actual: {humidity} %")
     print(f"Luz actual: {light} lx")
@@ -55,6 +57,7 @@ def simulated_temperature():
     print(f"NO2 actual: {no2} ppm")
     print(f"CO actual: {co} ppm")
     print(f"CO2 actual: {co2} ppm")
+    print(f"=========================================\n")
     message_json = json.dumps(message)
     client.publish("iot/simulated/granja", message_json, 1)
 
