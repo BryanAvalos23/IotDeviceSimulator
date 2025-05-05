@@ -3,6 +3,7 @@ import random
 import time
 import json
 from dotenv import load_dotenv
+from colorama import Fore, Style
 from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
 
 load_dotenv()
@@ -22,7 +23,7 @@ client.configureDrainingFrequency(2)
 client.configureConnectDisconnectTimeout(10)
 client.configureMQTTOperationTimeout(30)
 
-print("\n[+] Conectando al cliente MQTT...\n")
+print(Fore.BLUE + "\n[+] Conectando al cliente MQTT...\n" + Style.RESET_ALL)
 client.connect()
 
 def simulated_temperature():
@@ -48,16 +49,16 @@ def simulated_temperature():
       "CO2": co2
     }
 
-    print("[+] Nuevo mensaje publicado:")
-    print("=========================================")
-    print(f"Temperatura actual: {temperature} C")
-    print(f"Humedad actual: {humidity} %")
-    print(f"Luz actual: {light} lx")
-    print(f"NH3 actual: {nh3} ppm")
-    print(f"NO2 actual: {no2} ppm")
-    print(f"CO actual: {co} ppm")
-    print(f"CO2 actual: {co2} ppm")
-    print(f"=========================================\n")
+    print(Fore.GREEN + "[+] Nuevo mensaje publicado:" + Style.RESET_ALL)
+    print(Fore.LIGHTYELLOW_EX + "=========================================" + Style.RESET_ALL)
+    print(Fore.YELLOW + "   [+]" + Style.RESET_ALL + " Temperatura actual: " + Fore.GREEN + str(temperature) + " C" + Style.RESET_ALL)
+    print(Fore.YELLOW + "   [+]" + Style.RESET_ALL + " Humedad actual: " + Fore.GREEN + str(humidity) + " %" + Style.RESET_ALL)
+    print(Fore.YELLOW + "   [+]" + Style.RESET_ALL + " Luz actual: " + Fore.GREEN + str(light) + " LUX" + Style.RESET_ALL)
+    print(Fore.YELLOW + "   [+]" + Style.RESET_ALL + " NH3 actual: " + Fore.GREEN + str(nh3) + " ppm" + Style.RESET_ALL)
+    print(Fore.YELLOW + "   [+]" + Style.RESET_ALL + " NO2 actual: " + Fore.GREEN + str(no2) + " ppm" + Style.RESET_ALL)
+    print(Fore.YELLOW + "   [+]" + Style.RESET_ALL + " CO actual: " + Fore.GREEN + str(co) + " ppm" + Style.RESET_ALL)
+    print(Fore.YELLOW + "   [+]" + Style.RESET_ALL + " CO2 actual: " + Fore.GREEN + str(co2) + " ppm" + Style.RESET_ALL)
+    print(Fore.LIGHTYELLOW_EX + f"=========================================\n" + Style.RESET_ALL)
     message_json = json.dumps(message)
     client.publish("iot/simulated/granja", message_json, 1)
 
