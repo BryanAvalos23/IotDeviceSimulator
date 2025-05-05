@@ -49,6 +49,12 @@ def simulated_temperature():
     }
 
     print(f"Temperatura actual: {temperature} C")
+    print(f"Humedad actual: {humidity} %")
+    print(f"Luz actual: {light} lx")
+    print(f"NH3 actual: {nh3} ppm")
+    print(f"NO2 actual: {no2} ppm")
+    print(f"CO actual: {co} ppm")
+    print(f"CO2 actual: {co2} ppm")
     message_json = json.dumps(message)
     client.publish("iot/simulated/granja", message_json, 1)
 

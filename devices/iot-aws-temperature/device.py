@@ -39,7 +39,7 @@ def simulated_temperature():
     message_json = json.dumps(message)
     client.publish("iot/simulated/temperature", message_json, 1)
 
-    time.sleep(15)
+    time.sleep(2)
 
 try:
   simulated_temperature()
