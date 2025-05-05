@@ -59,6 +59,7 @@ def simulated_temperature():
     print(Fore.YELLOW + "   [+]" + Style.RESET_ALL + " CO actual: " + Fore.GREEN + str(co) + " ppm" + Style.RESET_ALL)
     print(Fore.YELLOW + "   [+]" + Style.RESET_ALL + " CO2 actual: " + Fore.GREEN + str(co2) + " ppm" + Style.RESET_ALL)
     print(Fore.LIGHTYELLOW_EX + f"=========================================\n" + Style.RESET_ALL)
+    
     message_json = json.dumps(message)
     client.publish("iot/simulated/granja", message_json, 1)
 
