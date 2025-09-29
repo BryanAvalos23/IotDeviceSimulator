@@ -13,7 +13,7 @@ certificate_path = os.getenv("CERTIFICATE_PATH")
 private_path = os.getenv("PRIVATE_KEY_PATH")
 root_ca_path = os.getenv("ROOT_CA_PATH")
 
-client = AWSIoTMQTTClient("Device_parcial")
+client = AWSIoTMQTTClient("Sin_device1")
 client.configureEndpoint(iot_endpoint, 8883)
 client.configureCredentials(root_ca_path, private_path, certificate_path)
 
@@ -38,7 +38,7 @@ def simulated_temperature():
     co2 = round(random.uniform(700.0, 1600.0), 2)
 
     message = {
-      "device_id" : "temp_device",
+      "device_id" : "Sin_device1",
       "timestamp" : int(time.time()),
       "temperature" : temperature,
       "humidity": humidity,
@@ -61,7 +61,7 @@ def simulated_temperature():
     print(Fore.LIGHTYELLOW_EX + f"=========================================\n" + Style.RESET_ALL)
     
     message_json = json.dumps(message)
-    client.publish("iot/simulated/granja", message_json, 1)
+    client.publish("iot/granja/sin_ventiladores/device1", message_json, 1)
 
     time.sleep(10)
 
